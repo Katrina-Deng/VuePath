@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(product,index) in products">
+          {{index}} --{{product.name}} -- {{product.count}}
+          <button @click="product.count++">Add</button>
+          <!-- <button @click="product.count--">Reduce</button> -->
+          <button @click="prdReduce(product.count, index)">Reduce</button>
+          <input type="text" v-model.number="product.count" />
+        </li>
+      </ul>
+      <div>total: {{totalNum}}</div>
+    </div>
+
+    <script>
+      app = new Vue({
+        el: "#app",
+        data: {
+          products: [
+            {
+              name: "苹果",
+              count: 1,
+            },
+            {
+              name: "草莓",
+              count: 1,
+            },
+            {
+              name: "香蕉",
+              count: 1,
+            },
+          ],
+        },
+        methods: {
+          prdReduce(count, index) {
+            if (count <= 1) {
+              this.products[index].count = 0;
+            } else {
+              this.products[index].count--;
+            }
+          },
+        },
+        computed: {
+          totalNum() {
+            return this.products.reduce(function (total, item) {
+              return total + item.count;
+            }, 0);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
