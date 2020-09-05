@@ -9,10 +9,11 @@
   <body>
     <div id="app" :test="test">
       {{msg}} {{num}}
+      <!-- 添加事件 -->
       <!-- FUNCTION -->
       <button @click="handleClick('1',$event)">click</button>
       <!-- INLINESTATE -->
-      <button @click.middle="num++">click</button>
+      <button @click="num++">click</button>
       <!-- my git 2.0 -->
     </div>
 
@@ -21,14 +22,14 @@
       new Vue({
         el: "#app",
         data: {
-          msg: "hello world,11",
+          msg: "hello world",
           test: "Hi,vue",
-          num: "",
+          num: 0,
         },
         methods: {
           handleClick(n, e) {
-            console.log(e);
-            console.log("click");
+            console.log("--e.target", e.target.TagName);
+            // console.log("click");
           },
         },
       });
