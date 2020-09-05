@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app" :test="test">
+      {{msg}} {{num}}
+      <!-- FUNCTION -->
+      <button @click="handleClick('1',$event)">click</button>
+      <!-- INLINESTATE -->
+      <button @click.middle="num++">click</button>
+    </div>
+
+    <!-- <button @click="clickbtn('1',$event)">click</button> -->
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello world,11",
+          test: "Hi,vue",
+          num: "",
+        },
+        methods: {
+          handleClick(n, e) {
+            console.log(e);
+            console.log("click");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
