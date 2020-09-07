@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{msg}}
+      <hr />
+      <ul>
+        <li>{{msg1}}</li>
+        <li>{{msg2}}</li>
+        <li>{{msg3}}</li>
+        <li>{{info.a}}</li>
+        <li>{{info.b}}</li>
+      </ul>
+    </div>
+
+    <script>
+      // 坑：给vue 实例一个名字
+      app = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello world",
+          username: "Ellen",
+          msg1: "",
+          msg2: "",
+          msg3: "",
+          info: {
+            a: "info a",
+            b: "info b",
+          },
+        },
+        methods: {
+          username1() {
+            console.log("username", this.username);
+          },
+        },
+        watch: {
+          //对象的方式
+          msg: {
+            handler(newValue, oldVlaue) {
+              this.msg1 = newValue + " Katrina";
+              this.msg2 = newValue + " Katrina";
+              this.msg3 = newValue + " Katrina";
+            },
+            //打开网页马上执行
+            immediate: true,
+          },
+          //methods绑定
+          username: "username1",
+          //默认不会对对象里面的值进行监听，如果要就需要deep
+          //此外还能对属性值进行监听
+          // info: {
+          //   handler(newValue, oldVlaue) {
+          //     console.log("--newValue, oldVlaue", newValue, oldVlaue);
+          //   },
+          //   deep: true,
+          // },
+          "info.a": {
+            handler(newValue, oldVlaue) {
+              console.log("--newValue, oldVlaue", newValue, oldVlaue);
+            },
+            deep: true,
+          },
+          // 函数的方式
+          // msg(newValue, oldVlaue) {
+          //   console.log(newValue, oldVlaue);
+          //   this.msg1 = newValue + " Katrina";
+          //   this.msg2 = newValue + " Katrina";
+          //   this.msg3 = newValue + " Katrina";
+          // },
+        },
+      });
+    </script>
+  </body>
+</html>

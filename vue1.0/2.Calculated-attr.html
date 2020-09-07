@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- hello world 倒置，在这里写特别麻烦 vue 提供了computed 方法 -->
+    <!-- <div id="app" :test="test">{{msg.split("").reverse().join("")}}</div> -->
+    <div id="app" :test="test">{{reverseMsg}}</div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello world Katrina",
+          test: "Hi,vue",
+        },
+        computed: {
+          //坑：这里要有this
+          reverseMsg() {
+            return this.msg.split("").reverse().join("");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

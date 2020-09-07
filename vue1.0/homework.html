@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>count: {{count}} </span>
+      <span>double: {{double}} </span>
+      <br />
+      <el-button type="primary" round @click="count++"
+        >点击加倍{{doubleSum}}</el-button
+      >
+      <!-- <button @click="count++">点击加倍{{doubleSum}}</button> -->
+    </div>
+    <script>
+      app = new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+          double: 0,
+        },
+        computed: {
+          doubleSum() {
+            // this.count++;
+            this.double = this.count * 2;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
