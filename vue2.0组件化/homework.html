@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      //:src="imgSrc" 动态绑定
+      Vue.component("PhotoItem", {
+        props: ["imgSrc", "imgName"],
+        template: `
+          <div class="photoItem">
+            <p>
+                {{imgSrc}} -- {{imgName}}
+            </p>
+            <img :src="imgSrc" :title="imgName" />
+          </div>
+        `,
+      });
+
+      app = new Vue({
+        el: `#app`,
+        template: `
+        <div>{{msg}}
+            <PhotoItem imgSrc="https://tse2-mm.cn.bing.net/th/id/OIP.bBAdHie9rVifIiTHcTEr-gHaE8?pid=Api&rs=1" imgName="dog"></PhotoItem>
+        </div>`,
+        data: {
+          msg: "hello world",
+        },
+      });
+    </script>
+  </body>
+</html>

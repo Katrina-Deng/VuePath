@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>component</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      Vue.component("componentA", {
+        methods: {
+          clickbtn() {
+            this.count++;
+            // 1.组件向外发出东西 格式this.$emit("id", 参数);
+            this.$emit("countNum", this.count);
+          },
+        },
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        template: `<div>
+            ComponentA 
+            <button @click="clickbtn">add</button>
+            count -- {{count}}
+            </div>`,
+      });
+      app = new Vue({
+        el: `#app`,
+        //2. Vue实例接受参数 ,click 里面 $emti id = 一个接受参数的函数
+        template: `
+            <div>
+                {{msg}}
+                <componentA @countNum="clickchange"></componentA>
+            </div>
+        `,
+        data: {
+          msg: "hello world",
+        },
+        //3. 定义这个接受参数一个函数
+        methods: {
+          clickchange(val) {
+            console.log(val);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

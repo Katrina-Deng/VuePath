@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>component</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      Vue.directive("focus", {
+        bind(el, binding) {
+          console.log(el);
+          console.log(binding);
+          el.focus();
+          console.log("bind");
+        },
+        inserted(el) {
+          el.focus();
+          console.log("inserted");
+        },
+      });
+
+      Vue.component("componentA", {
+        methods: {
+          clickbtn() {
+            this.count++;
+          },
+        },
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        //v-focus.a.b="123"></input>
+        //可以这样在bindling 里面传递一些参数
+        template: `<div>
+            ComponentA
+            <input type="text" v-focus.a.b="123"></input>
+            <button @click="clickbtn">add</button>
+            count -- {{count}}
+            </div>`,
+      });
+      app = new Vue({
+        el: `#app`,
+        template: `
+            <div>
+                {{msg}}
+                <componentA></componentA>
+            </div>
+        `,
+        data: {
+          msg: "hello world",
+        },
+      });
+    </script>
+  </body>
+</html>

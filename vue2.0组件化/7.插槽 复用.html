@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>component</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      Vue.component("componentA", {
+        props: ["list"],
+        methods: {
+          clickbtn() {
+            this.count++;
+          },
+        },
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        template: `<div>
+            ComponentA 
+            <ul>
+              <li v-for="item in list">
+                <slot :item="item"></slot>  
+              </li>  
+            </ul>
+            
+            <button @click="clickbtn">add</button>
+            count -- {{count}}
+            </div>`,
+      });
+      //data -- {{data.name}} -- {{data.age}}
+      app = new Vue({
+        el: `#app`,
+        template: `
+            <div>
+                {{msg}}
+                <componentA :list="list">
+                  <template v-slot="{item}">
+                   {{item.name}} -- {{item.age}}
+                  </template>
+                </componentA>
+            </div>
+        `,
+        data: {
+          msg: "hello world",
+          list: [
+            { name: "ellen", age: 15 },
+            { name: "Joey", age: 16 },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

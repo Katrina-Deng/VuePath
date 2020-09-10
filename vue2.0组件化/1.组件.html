@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>component</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 下面渲染了这里就不用了 -->
+      <!--       {{msg}}
+      <component-a>componentA</component-a> -->
+    </div>
+
+    <script>
+      //局部注册
+      const ComponentB = {
+        template: `<div>ComponentB</div>`,
+      };
+      //全局注册
+      Vue.component("componentA", {
+        components: {
+          ComponentB,
+        },
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        template: `<div>
+            ComponentA 
+            count -- {{count}}
+            <ComponentB></ComponentB>
+            </div>`,
+      });
+      app = new Vue({
+        el: `#app`,
+        template: `
+            <div>
+                {{msg}}
+                <componentA></componentA>
+            </div>
+        `,
+        data: {
+          msg: "hello world",
+        },
+      });
+    </script>
+  </body>
+</html>
