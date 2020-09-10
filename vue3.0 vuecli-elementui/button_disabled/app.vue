@@ -26,7 +26,7 @@ export default {
 
   methods: {
     authorClick(val) {
-      alert("你点击点击了一个按钮--" + val);
+      alert("你点击点击了一个按钮\n\r" + val);
     },
   },
 };

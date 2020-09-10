@@ -19,7 +19,7 @@ export default {
 
   data() {
     return {
-      author: "Ellen",
+      author: "author -Ellen",
     };
   },
   methods: {
