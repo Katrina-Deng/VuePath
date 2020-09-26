@@ -15,6 +15,39 @@
       <!-- INLINESTATE -->
       <button @click="num++">click</button>
       <!-- my git 2.0 -->
+      <!-- 修饰符demo -->
+      <!-- vue click.stop阻止点击事件继续传播 -->
+      <div @click="divEvent">
+        <button @click.stop="buttonEvent">clickBtn</button>
+        <!-- 只会显示 222 -->
+      </div>
+      <form v-on:submit.prevent>
+        <!-- 是阻止事件本身行为,如阻止超链接的点击跳转,form表单的点击提交 -->
+        <input type="text" />
+        <input type="submit" value="submit" />
+      </form>
+      <!-- capture -->
+      <!-- 添加事件监听器时使用事件捕获模式 -->
+      <!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
+      <div @click.capture="divEvent">
+        <button @click="buttonEvent">clickcapture</button>
+      </div>
+      <!-- self -->
+      <!-- self是只执行子级本身的函数 -->
+      <div @click.self="divEvent">
+        <button @click="buttonEvent">clickself</button>
+      </div>
+      <form>
+        <!-- https://www.jianshu.com/p/b12d0d3ad4c1 -->
+        <!-- 是阻止事件本身行为,如阻止超链接的点击跳转,form表单的点击提交 -->
+        <textarea
+          name="test"
+          id=""
+          cols="20"
+          rows="5"
+          style="resize: none"
+        ></textarea>
+      </form>
     </div>
 
     <!-- <button @click="clickbtn('1',$event)">click</button> -->
@@ -30,6 +63,12 @@
           handleClick(n, e) {
             console.log("--e.target", e.target.TagName);
             // console.log("click");
+          },
+          divEvent() {
+            alert(111);
+          },
+          buttonEvent() {
+            alert(222);
           },
         },
       });
